@@ -1,36 +1,41 @@
-from typing import Any
+from typing import Any, List, Dict, Union
 
 
 def format_name(first_name: Any, last_name: Any):
     """Return a full name: "John JAMESEON"."""
 
-    a = first_name  # Add here a proper method to have the first name capitalized.
+    a = first_name # Add here a proper method to have the first name capitalized.
+    a_captalized = a.capitalize()
     b = last_name  # Add here a proper method to have the last name uppercased.
-    return f"{a} {b}"
+    b_uppercased = b.upper()
+    return f"{a_captalized} {b_uppercased}"
 
 
 def format_name_annotated(first_name: str, last_name: str) -> str:
     """Return a full name: "John JAMESEON"."""
 
     a = first_name  # Add here a proper method to have the first name capitalized.
+    a_captalized = a.capitalize()
     b = last_name  # Add here a proper method to have the last name uppercased.
-    return f"{a} {b}"
+    b_uppercased = b.upper()
+    return f"{a_captalized} {b_uppercased}"
 
 
 def process_character(s):
     ...
 
 
-def add_words_to_collection(string_to_process: Any, collection: Any):
+def add_words_to_collection(string_to_process: str, collection: list):
+    collection.append(" ")
     for word in string_to_process:  # fix here:
         # add word to collection here (it is a list)
-        pass
-    return collection[0]
+        collection.append(word)
+    return collection
 
 
 def add_words_to_collection_annotated(
     string_to_process: str, collection: list[str]
-) -> list[str]:
+    ) -> list[str]:
     for word in string_to_process:  # fix here: add proper method to iterate over words
         # add word to collection here (it is a list)
         pass
@@ -58,7 +63,8 @@ def greet(name, greeting=None):
     return f"{greeting}, {name}!"
 
 
-def parse_number(num):
+def parse_number(num: str) -> Union[int,float,None]:
+    result: Union[int,float,None]
     # add proper typing annotations here
     # use Union for arguments which can be of different types
     try:
@@ -71,19 +77,19 @@ def parse_number(num):
     return result
 
 
-def get_evens(numbers):
+def get_evens(numbers: List[int]) -> List[int]:
     # add proper typing annotations here
     # use List for lists with elements of the same type here
     # don't forget to import List from typing
     return [num for num in numbers if num % 2 == 0]
 
 
-def count_words(words):
+def count_words(words: List[str]) -> Dict[str, int]:
     """Return a dictionary with the count of each word."""
     # add proper typing annotations here
     # use Dict for dictionaries with elements of the same type here
     # don't forget to import Dict from typing
-    word_counts = {}
+    word_counts = dict() # type: dict
     for word in words:
         if word in word_counts:
             word_counts[word] += 1
@@ -92,7 +98,7 @@ def count_words(words):
     return word_counts
 
 
-def merge_dicts(fruits1, fruits2):
+def merge_dicts(fruits1:Dict[str,int], fruits2:Dict[str,int]):
     # add proper typing annotations here
     result = fruits1.copy()
     for key, value in fruits2.items():
@@ -103,20 +109,25 @@ def merge_dicts(fruits1, fruits2):
     return result
 
 
+
+
 # Define two dictionaries
 fruits1 = [{"apple": 3}, {"banana": 2}, {"orange": 1}]
 fruits2 = {"banana": 1, "cherry": 4}
 
 # Merge the dictionaries
-merged_fruits = merge_dicts(fruits1, fruits2)
+#merged_fruits = merge_dicts(fruits1, fruits2)
 
 
-def main():
-    print(format_name("john", "jameson"))
-    print(format_name_annotated("john", "jameson"))
-    print(add_words_to_collection("new words", ["initial"]))
-    print(add_words_to_collection_annotated("new words", ["initial"]))
+
+print(format_name("john", "jameson"))
+print("...")
+print(format_name_annotated("john", "jameson"))
+print("...")
+print(add_words_to_collection("new words", ["initial"]))
+print("...")
+#print(add_words_to_collection_annotated("new words", ["initial"]))
+print("...")
 
 
-if __name__ == "__main__":
-    main()
+
